@@ -9,9 +9,11 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+		<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/bootstrap.min.js"></script>
+
         <?php wp_head(); ?>
 
-        <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/bootstrap.min.css" rel="stylesheet">
+        <!-- <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/bootstrap.min.css" rel="stylesheet"> -->
 
         <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">
     </head>

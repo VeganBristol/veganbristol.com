@@ -1,4 +1,4 @@
-
+/*
 Theme Name: veganbristol.com
 Theme URI: https://github.com/VeganBristol/veganbristol.com
 Author: Gibran Hemani and Bharat Kunwar
@@ -14,131 +14,17 @@ Use it to make something cool, have fun, and share what you've learned with othe
 */
 
 @import url(//fonts.googleapis.com/css?family=Oxygen|Rufina);
+@import url('css/bootstrap.min.css');
 
-@import url('css/bootstrap.min.css'); 
-
-
-
-/* Navigation Menu - Background */
-.navigation {
-  /* critical sizing and position styles */
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  
-  /* non-critical appearance styles */
-  list-style: none;
-  background: #666;
-}
-
-/* Navigation Menu - List items */
-.menu-item {
-  /* non-critical appearance styles */
-  width: 200px;
-  border-top: 1px solid #111;
-  border-bottom: 1px solid #000;
-}
-
-.menu-item a {
-  /* non-critical appearance styles */
-  display: block;
-  padding: 1em;
-  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
-  color: white;
-  font-size: 1.2em;
-  text-decoration: none;
-  transition: color 0.2s, background 0.5s;
-}
-
-.menu-item a:hover {
-  color: #c74438;
-  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(75,20,20,0.65) 100%);
-}
-
-/* Site Wrapper - Everything that isn't navigation */
-.site-wrap {
-  /* Critical position and size styles */
-  min-height: 100%;
-  min-width: 100%;
-  background-color: white; /* Needs a background or else the nav will show through */
-  position: relative;
-  top: 0;
-  bottom: 100%;
-  left: 0;
-  z-index: 1;
-  
-  /* non-critical apperance styles */
-  /*padding: 4em;*/
-  /*background-image: linear-gradient(135deg, rgb(254,255,255) 0%,rgb(221,241,249) 35%,rgb(160,216,239) 100%);*/
-  /*background-size: 200%;*/
-}
-
-/* Nav Trigger */
-.nav-trigger {
-  /* critical styles - hide the checkbox input */
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-}
-
-label[for="nav-trigger"] {
-  /* critical positioning styles */
-  position: fixed;
-  left: 15px; top: 15px;
-  z-index: 2;
-  
-  /* non-critical apperance styles */
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
-  background-size: contain;
-}
-
-/* Make the Magic Happen */
-.nav-trigger + label, .site-wrap {
-  transition: left 0.2s;
-}
-
-.nav-trigger:checked + label {
-  left: 215px;
-}
-
-.nav-trigger:checked ~ .site-wrap {
-  left: 200px;
-  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
-}
-
-body {
-    /* Without this, the body has excess horizontal scroll when the menu is open */
-  overflow-x: hidden;
-  margin: 0px;
-  padding: 0px;
-  font-family: 'Lato', Calibri, Arial, sans-serif;
-}
 
 /* Additional non-critical styles */
 
-h1, h3, p, .container {
-  /*max-width: 600px;*/
-  /*margin: 0 auto 1em;*/
-}
-
 h1{
   font-family: 'Rufina', serif;
-  font-size: 100px;
-  line-height: 72px;
+  font-size: 70px;
+  line-height: 42px;
+  margin-bottom: 20px;
 }
-
-code {
-    padding: 2px;
-    background: #ddd;
-}
-
 
 p {
   font-family: 'Oxygen', sans-serif;
@@ -146,30 +32,19 @@ p {
   line-height: 24px;
 }
 
-/* Micro reset */
-*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;}
-html, body { height: 100%; width: 100%}
-
-
-body,html {
-  margin:0;
-  padding:0;
-}
 
 /* MAP */
 
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
-/*
-#map {
-  height: 100%;
-  position: relative;
-}*/
+
 /* Optional: Makes the sample page fill the window. */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+
+
+body {
+  overflow-x: hidden;
+  margin: 0px;
+  padding: 0px;
 }
 
 #overmap {
@@ -197,14 +72,41 @@ html, body {
   margin:0;
   padding:0;
   position:absolute;
+  top: 0;
 }
 
-/*#map {
-	width: 100%;
-  height: 100%;
-}
-*/
 /* Start navigation drawer */
+
+
+/* The side navigation menu */
+.sideinfo {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    font-size: 24px;
+    background-color: #EEEEEE; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* When you mouse over the navigation links, change their color */
+.sideinfo a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sideinfo .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
 
 /* The side navigation menu */
 .sidenav {
@@ -214,20 +116,20 @@ html, body {
     z-index: 1; /* Stay on top */
     top: 0;
     left: 0;
+    font-size: 24px;
     background-color: #111; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 /* The navigation menu links */
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
     color: #818181;
     display: block;
-    transition: 0.3s
+    transition: 0.2s
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -246,7 +148,7 @@ html, body {
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #map {
-    transition: margin-left .5s;
+    transition: margin-left 0.2s;
     padding: 20px;
 }
 
@@ -254,10 +156,67 @@ html, body {
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+    .sideinfo {padding-top: 15px;}
+    .sideinfo a {font-size: 18px;}
 }
 
-.infowindow-content {
-  height: 400px;
+#infowindow-content {
+  width: 600px;
+  height: 600px;
 }
 
-/* End navigation drawer
+/* End navigation drawer */
+
+/* http://www.colourlovers.com/palette/81885/Hymn_For_My_Soul */
+
+
+.tagitem {
+  text-decoration: none;
+  padding: 5px;
+  margin: 5px;
+  color: white;
+  border-radius: 7px;
+}
+
+.post_tag-item {
+  background-color: #7AB317;
+}
+
+.business-type-item {
+  background-color: #0B2E59;
+}
+
+.neighbourhood-item {
+  background-color: #0D6759;
+}
+
+.cuisine-item {
+  background-color: #2A044A;
+}
+
+
+.tagitem:hover {
+  text-decoration: none;
+  background-color: white;
+}
+
+
+.post_tag-item:hover {
+  color: #7AB317;
+}
+
+.business-type-item:hover {
+  color: #0B2E59;
+}
+
+.neighbourhood-item:hover {
+  color: #0D6759;
+}
+
+.cuisine-item:hover {
+  color: #2A044A;
+}
+
+.summary-link {
+  margin-right: 5px;
+}
