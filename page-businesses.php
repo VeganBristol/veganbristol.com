@@ -17,10 +17,10 @@
 
 ?>
 
+    <div id="map"></div>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvfhHopNdtPTjvZx8LfrJLjCiQwrHzfH0"
     async defer></script>
-    <div id="map"></div>
 
     <script>
         // Styles a map in night mode.
@@ -109,44 +109,8 @@
           ]
         });
 
-        var marker = [];
-
-<?
-
-$myposts = get_posts(array(
-				'post_type'=> 'business',
-				'posts_per_page'=>'10', 
-				'post_status'=>'publish', 
-				'order'=>'ASC'));
-
-$counter = 0;
-
-foreach($myposts as $post) :
-	global $post;
-	setup_postdata($post);
-	$values = get_field('location');
-	$lat = $values['lat'];
-	$lng = $values['lng'];
-
-	if (empty($lat) or empty($lng)) {
-?>
-	console.error( '<?=the_title()?> has no latlng set.' );
-<?	
-	// the_content();
-	} else {
-?>
-		marker[<?=$counter?>] = new google.maps.Marker({
-		    position: { lat: <?=$lat?>, lng: <?=$lng?> },
-		    map: map,
-		    title:"Marker"
-		});
-<?
-		$counter++;
-	}
-endforeach;
-
-?>
-    </script>
 <?
 wp_reset_postdata(); 
 get_footer(); ?>
+
+
