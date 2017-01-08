@@ -109,6 +109,124 @@
           ]
         });
 
+        var contentString = '';
+
+        var infoWindow = new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 800,
+        });        
+
+        var markers = [];
+
+        function loadContent(marker, post_slug){
+          infoWindow.setContent("Loading...");
+          infoWindow.open(map, marker);
+          $.ajax({
+            url: post_slug,
+            success: function(data){
+              var content = data;
+              infoWindow.setContent(content);
+              infoWindow.open(map, marker);
+            }
+          });
+        }
+
+<?
+
+$myposts = get_posts(array(
+				'post_type'=> 'business',
+				'posts_per_page'=>'100', 
+				'post_status'=>'publish', 
+				'order'=>'ASC'));
+
+$counter = 0;
+
+foreach($myposts as $post) :
+	global $post;
+	setup_postdata($post);
+	$values = get_field('location');
+	$lat = $values['lat'];
+	$lng = $values['lng'];
+  $post_slug=$post->post_name;
+
+
+	if (empty($lat) or empty($lng)) {
+?>
+	console.error( '<?=the_title()?> has no latlng set.' );
+<?	
+	// the_content();
+	} else {
+?>
+		markers[<?=$counter?>] = new google.maps.Marker({
+		    position: { lat: <?=$lat?>, lng: <?=$lng?> },
+		    map: map,
+		    title:"Marker"
+		});
+
+
+
+    markers[<?=$counter?>].addListener('click', function() {
+      // infoWindow.setContent("<?
+      //   echo "<a href='{$post_slug}'>";
+      //   the_title();
+      //   echo "</a>";
+      //   ?>"
+      //   );
+      loadContent(markers[<?=$counter?>],"<?=$post_slug?>");
+    });
+<?
+		$counter++;
+	}
+endforeach;
+?>
+    </script>
+
+    <div id="overmap">
+
+      <div class="overmap_item">
+        about
+      </div>
+
+      <div class="overmap_item">
+        news
+      </div>
+
+      <div class="overmap_item" onclick="openNav()">
+        food &amp; drink
+      </div>
+
+      <div class="overmap_item">
+        articles
+      </div>
+
+    </div>
+
+    <script>
+      /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+      function openNav() {
+          document.getElementById("mySidenav").style.width = "250px";
+          document.getElementById("map").style.marginLeft = "250px";
+      }
+
+      /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+      function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("map").style.marginLeft = "0";
+      }
+    </script>
+
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <!-- Use any element to open the sidenav -->
+    
+
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
 <?
 wp_reset_postdata(); 
 get_footer(); ?>

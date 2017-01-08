@@ -44,16 +44,16 @@ function display_links() {
 
 function display_content($keep_images='true')
 {
-	if($keep_images = 'true')
-	{
-		the_content();
-	} else {
+	// if($keep_images = 'true')
+	// {
+	// 	the_content();
+	// } else {
 		$content = get_the_content();
 		$content = preg_replace("/<img[^>]+\>/i", " ", $content);          
 		$content = apply_filters('the_content', $content);
 		$content = str_replace(']]>', ']]>', $content);
 		echo $content;		
-	}
+	// }
 }
 
 
@@ -114,7 +114,9 @@ echo("</div> <!-- summary-area -->");
 
 // Content
 
-display_content();
+display_content('false');
+
+echo("</div>  <!-- container -->");
 
 
 // Comments
@@ -127,7 +129,6 @@ endif;
 endwhile; endif; ?>
 
 
-</div>  <!-- container -->
 
 
 <? get_footer(); ?>

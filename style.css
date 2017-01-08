@@ -1,4 +1,4 @@
-/*
+
 Theme Name: veganbristol.com
 Theme URI: https://github.com/VeganBristol/veganbristol.com
 Author: Gibran Hemani and Bharat Kunwar
@@ -13,9 +13,11 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
+@import url(//fonts.googleapis.com/css?family=Oxygen|Rufina);
 
-@import url(//fonts.googleapis.com/css?family=Lato:300,400,700);
 @import url('css/bootstrap.min.css'); 
+
+
 
 /* Navigation Menu - Background */
 .navigation {
@@ -122,13 +124,26 @@ body {
 /* Additional non-critical styles */
 
 h1, h3, p, .container {
-  max-width: 600px;
-  margin: 0 auto 1em;
+  /*max-width: 600px;*/
+  /*margin: 0 auto 1em;*/
+}
+
+h1{
+  font-family: 'Rufina', serif;
+  font-size: 100px;
+  line-height: 72px;
 }
 
 code {
     padding: 2px;
     background: #ddd;
+}
+
+
+p {
+  font-family: 'Oxygen', sans-serif;
+  font-size: 12px;
+  line-height: 24px;
 }
 
 /* Micro reset */
@@ -141,11 +156,54 @@ body,html {
   padding:0;
 }
 
+/* MAP */
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+/*
 #map {
+  height: 100%;
+  position: relative;
+}*/
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#overmap {
+  position: absolute; top: 10px; right: 10px; z-index: 99;
+  padding: 30px;
+  /*width: 25%;*/
+}
+
+.overmap_item {
+  background-color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 10px;
+  display:inline-block;
+  padding: 5px;
+  color: #333;
+  font-size: 20px;
+  text-align: right;
+}
+
+
+/* End of MAP */
+
+#map { 
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  position:absolute;
+}
+
+/*#map {
 	width: 100%;
   height: 100%;
 }
-
+*/
 /* Start navigation drawer */
 
 /* The side navigation menu */
@@ -202,4 +260,4 @@ body,html {
   height: 400px;
 }
 
-/* End navigation drawer*/
+/* End navigation drawer
