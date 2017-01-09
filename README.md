@@ -2,8 +2,6 @@
 
 ## Sections
 
-- interactive map
-
 - news (or articles?)
 
 - links / information
