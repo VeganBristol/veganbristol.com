@@ -21,7 +21,7 @@ function display_terms_together($taxonomy) {
 		$values = get_the_terms(get_the_ID(), $tax);
 
 		foreach($values as $val) {
-			$vals[] = "<a class='" . $tax . "-item tagitem' href='#'>" . $val->name . "</a> ";
+			$vals[] = "\n<a class='" . $tax . "-item tagitem' href='#'>" . $val->name . "</a> ";
 		}
 
 	}
@@ -74,21 +74,24 @@ function display_links() {
 
 	if($website != '') 
 	{
-		echo("<a class='weblink summary-link' href='" . $website . "' target='_blank'><img src='http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/www.svg' height='30px'></a>");
+		echo("\n");
+		echo("<a href='" . $website . "' target='_blank'><div class='weblink'> </div></a>");
 	}
 	if($facebook != '')
 	{
-		echo("<a class='facebooklink summary-link' href='https://www.facebook.com/" . $facebook . "' target='_blank'><img src='http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/facebook.svg' height='30px'></a>");
+		echo("\n");
+		echo("<a href='https://www.facebook.com/" . $facebook . "' target='_blank'><div class='facebooklink'> </div></a>");
 	}
 	if($instagram != '')
 	{
-		echo("<a class='instagramlink summary-link' href='https://www.instagram.com/" . $instagram . "' target='_blank'><img src='http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/instagram.svg' height='30px'></a>");
+		echo("\n");
+		echo("<a href='https://www.instagram.com/" . $instagram . "' target='_blank'><div class='instagramlink'> </div></a>");
 	}
 	if($twitter != '')
 	{
-		echo("<a class='twitterlink summary-link' href='https://www.twitter.com/" . $twitter . "' target='_blank'><img src='http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/twitter.svg' height='30px'></a>");
+		echo("\n");
+		echo("<a href='https://www.twitter.com/" . $twitter . "' target='_blank'><div class='twitterlink'> </div></a>");
 	}
-
 
 	$values = get_field('location');
 
@@ -99,11 +102,8 @@ function display_links() {
 
 	$link = "http://www.google.com/maps/place/" . $add . "/@" . $lat . "," . $lng;
 
-	$out = "<a href='" . $link . "' target='_blank'><img src='http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/location.svg' height='30px'></a>";
+	$out = "\n<a href='" . $link . "' target='_blank'><div class='locationlink'> </div></a>";
 	echo $out;
-
-
-
 }
 
 
@@ -137,7 +137,7 @@ function display_address() {
 }
 
 
-echo ("<div class='container'>");
+echo ("<div class='container-fluid'>\n");
 // echo ("<div class='summary-area'>");
 
 echo ("<h1>");
@@ -147,40 +147,17 @@ echo ("</h1>");
 
 // Taxonomies
 
-echo("<p>");
+echo("\n<div class='displaylinks'>");
 display_terms_together(array('business-type', 'neighbourhood', 'cuisine', 'post_tag'));
-echo("</p>");
+echo("\n</div>");
 
-echo("<p>");
+echo("\n<div class='displaylinks'>");
 display_links();
-echo("</p>");
-
-
-?>
-<!-- </div> -->
-
-<?
-
-// Links
-
-
-
-// Location
-
-// display_address();
-
-?>
-
-
-<?
-
+echo("\n&nbsp;</div>\n");
 
 // Content
 
 display_content('false');
-
-
-// echo("</div>  <!-- container -->");
 
 
 // Comments
@@ -189,10 +166,11 @@ if ( comments_open() || get_comments_number() ) :
 	comments_template();
 endif;
 
+echo("</div>  <!-- container -->");
+
+
 
 endwhile; endif; ?>
-
-
 
 
 <? get_footer(); ?>

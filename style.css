@@ -42,13 +42,16 @@ p {
 
 
 body {
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
   margin: 0px;
   padding: 0px;
 }
 
 #overmap {
-  position: absolute; top: 10px; right: 10px; z-index: 99;
+  position: absolute;
+  top: 10px; 
+  right: 10px; 
+  z-index: 99;
   padding: 30px;
   /*width: 25%;*/
 }
@@ -69,10 +72,12 @@ body {
 #map { 
   width:100%;
   height:100%;
-  margin:0;
+  margin-left:auto;
+  margin-right:auto;
   padding:0;
   position:absolute;
   top: 0;
+  /*overflow-x: hidden;*/
 }
 
 /* Start navigation drawer */
@@ -86,7 +91,7 @@ body {
     z-index: 1; /* Stay on top */
     top: 0;
     left: 0;
-    font-size: 24px;
+    /*font-size: 24px;*/
     background-color: #EEEEEE; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
@@ -217,6 +222,176 @@ body {
   color: #2A044A;
 }
 
-.summary-link {
-  margin-right: 5px;
+
+.displaylinks {
+  margin-bottom: 20px;
+}
+
+
+.weblink, .facebooklink, .locationlink, .instagramlink, .twitterlink {
+  margin-right: 20px;
+  margin-left: 5px;
+  background-size: 30px; 
+  height: 30px; 
+  width: 30px; 
+  float: left;
+}
+
+.weblink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/www.svg) center left no-repeat;
+}
+
+.weblink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/www1.svg) center left no-repeat;
+}
+
+.facebooklink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/facebook.svg) center left no-repeat;
+}
+
+.facebooklink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/facebook1.svg) center left no-repeat;
+}
+
+.locationlink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/location.svg) center left no-repeat;
+}
+
+.locationlink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/location1.svg) center left no-repeat;
+}
+
+.instagramlink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/instagram.svg) center left no-repeat;
+}
+
+.instagramlink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/instagram1.svg) center left no-repeat;
+}
+
+.twitterlink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/twitter.svg) center left no-repeat;
+}
+
+.twitterlink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/twitter1.svg) center left no-repeat;
+}
+
+
+/*Comments*/
+
+
+#comments {
+  clear: both;
+  padding: 2em 0 0.5em;
+}
+
+.comments-title, #reply-title {
+  font-size: 20px;
+  font-size: 1.25rem;
+  margin-bottom: 1.5em;
+}
+
+.comment-list,
+.comment-list .children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.comment-list li:before {
+  display: none;
+}
+
+.comment-body {
+  margin-left: 65px;
+}
+
+.comment-author {
+  font-size: 16px;
+  font-size: 1rem;
+  margin-bottom: 0.4em;
+  position: relative;
+  z-index: 2;
+}
+
+.comment-author .avatar {
+  height: 50px;
+  left: -65px;
+  position: absolute;
+  width: 50px;
+}
+
+.comment-author .says {
+  display: none;
+}
+
+.comment-meta {
+  margin-bottom: 1.5em;
+}
+
+.comment-metadata {
+  color: #767676;
+  font-size: 10px;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.1818em;
+  text-transform: uppercase;
+}
+
+.comment-metadata a {
+  color: #767676;
+}
+
+.comment-metadata a.comment-edit-link {
+  color: #222;
+  margin-left: 1em;
+}
+
+.comment-body {
+  color: #333;
+  font-size: 14px;
+  font-size: 0.875rem;
+  margin-bottom: 4em;
+}
+
+.comment-reply-link {
+  font-weight: 800;
+  position: relative;
+}
+
+.comment-reply-link .icon {
+  color: #222;
+  left: -2em;
+  height: 1em;
+  position: absolute;
+  top: 0;
+  width: 1em;
+}
+
+.children .comment-author .avatar {
+  height: 30px;
+  left: -45px;
+  width: 30px;
+}
+
+.bypostauthor > .comment-body > .comment-meta > .comment-author .avatar {
+  border: 1px solid #333;
+  padding: 2px;
+}
+
+.no-comments,
+.comment-awaiting-moderation {
+  color: #767676;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.comments-pagination {
+  margin: 2em 0 3em;
+}
+
+.form-submit {
+  text-align: right;
 }

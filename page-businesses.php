@@ -3,18 +3,22 @@
     <div id="map"></div>
 
     <script>
-        var map, infoWindow;
+        var map, infoWindow, animatedMarker;
         var markers = [];   
 
         function focusMarker(marker){
-          map.setCenter(marker.getPosition());
+          map.panTo(marker.getPosition());
+          if (animatedMarker != null){
+            animatedMarker.setAnimation(null);
+          }
+          animatedMarker = marker;
           marker.setAnimation(google.maps.Animation.BOUNCE);
         }
 
         function loadContent(marker, post_slug){
+          focusMarker(marker);          
           infoWindow.setContent("Loading...");
           infoWindow.open(map, marker);
-
           $.ajax({
             url: post_slug,
             success: function(data){
@@ -24,6 +28,7 @@
               // infoWindow.setContent(content);
               // infoWindow.open(map, marker);
               infoWindow.close();
+              focusMarker(marker);
             }
           });
         }
@@ -167,7 +172,7 @@ foreach($myposts as $post) :
       loadContent(markers[<?=$counter?>],"<?=$post_slug?>");
     });
 
-    links += '<a href="#" onclick="loadContent(markers[<?=$counter?>],\'<?=$post_slug?>\');" onmouseover="focusMarker(markers[<?=$counter?>]);" onmouseout="markers[<?=$counter?>].setAnimation(null);">';
+    links += '<a href="#" onclick="loadContent(markers[<?=$counter?>],\'<?=$post_slug?>\');">';
     links += '<?the_title()?>';
     links += '</a>';    
 <?
