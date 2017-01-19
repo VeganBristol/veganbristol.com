@@ -214,8 +214,8 @@ endforeach;
       /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
       function openNav() {
           closeInfo();
-          document.getElementById("mySidenav").style.width = "400px";
-          document.getElementById("map").style.marginLeft = "400px";
+          document.getElementById("mySidenav").style.width = "100%";
+          document.getElementById("map").style.marginLeft = "100%";
       }
 
       /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
