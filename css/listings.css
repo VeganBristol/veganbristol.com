@@ -1,15 +1,38 @@
 .listing {
 	float: left;
-	height: 200px;
-	width: 200px;
+	height: 170px;
+	width: 170px;
 	display: inline-block;
 	margin: 10px;
 	border: 4px green solid;
 }
 
+.whatever{
+    /*background-color: red;*/
+    display: inline-block;
+    color: #292723;
+    /*background-color: #aaaaaa;*/
+    padding: 3px;
+    font-family: monospace;
+    font-weight: normal;
+    border-radius: 10px;
+    font-size: 12px;
+    border: white 2px solid;
+    margin: 0px;
+}
 
+.whatever:hover{
+	border-color: red;
+}
 
-<style>
-  .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
-  .toggle.ios .toggle-handle { border-radius: 20px; }
-</style>
+#taglists input[type=checkbox]{
+    display: none;
+}
+
+#taglists input[type=checkbox]:checked + .whatever{
+    color: #aaaaaa;
+}
+
+.rightalign {
+	text-align: right;
+}

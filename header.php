@@ -16,16 +16,7 @@
         <!-- <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/bootstrap.min.css" rel="stylesheet"> -->
 
         <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">
-
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-
-
-<style>
-  .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
-  .toggle.ios .toggle-handle { border-radius: 20px; }
-</style>
-
+        <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/listings.css" rel="stylesheet">
     </head>
 <body>
 
