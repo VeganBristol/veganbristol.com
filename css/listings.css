@@ -6,3 +6,10 @@
 	margin: 10px;
 	border: 4px green solid;
 }
+
+
+
+<style>
+  .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+  .toggle.ios .toggle-handle { border-radius: 20px; }
+</style>

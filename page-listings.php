@@ -22,7 +22,6 @@ function display_terms_together($taxonomy) {
 
 <div class="container">
 
-
 <!-- Get list of tags -->
 
 <?
@@ -46,27 +45,25 @@ function display_terms_together($taxonomy) {
 	));
 
 
-echo('<div class="btn-group" role="group">');
 foreach($term1 as $term) :
-	echo('<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">');
-	echo($term->name);
-	echo("</button>");
+	echo("<input checked type='checkbox' class='button-bt' data-toggle='toggle' data-businesstype=':" . $term->term_id . ":' data-on='" . $term->name . "'  data-off='" . $term->name . "'>\n");
+
+
 endforeach;
-echo("</div>");
-echo('<div class="btn-group" role="group">');
-foreach($term2 as $term) :
-	echo('<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">');
-	echo($term->name);
-	echo("</button>");
-endforeach;
-echo("</div>");
-echo('<div class="btn-group" role="group">');
-foreach($term3 as $term) :
-	echo('<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">');
-	echo($term->name);
-	echo("</button>");
-endforeach;
-echo("</div>");
+//echo('<div class="btn-group" role="group">');
+//foreach($term2 as $term) :
+//	echo('<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">');
+//	echo($term->name);
+//	echo("</button>");
+//endforeach;
+//echo("</div>");
+//echo('<div class="btn-group" role="group">');
+//foreach($term3 as $term) :
+//	echo('<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">');
+//	echo($term->name);
+//	echo("</button>");
+//endforeach;
+//echo("</div>");
 // echo('<div class="btn-group" role="group">');
 // foreach($term4 as $term) :
 // 	echo('<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">');
@@ -78,32 +75,43 @@ echo("</div>");
 
 ?>
 
-
-<input type="button" id="test" value="Toggle 830" />
-
-
-
+<p>
 <input type="text" id="filter">
-<ul class="cars">
-    <li data-models="mustang, f150, 500, fusion">Ford</li>
-    <li data-models="corvette, silverado, impala, cavalier">Chevrolet</li>
-    ...
-</ul>
+</p>
+<p>
+<input type="button" class="testbutton" data-id=':830:' value="Toggle 830" />
+<input type="button" class="testbutton" data-id=':898:' value="Toggle 898" />
+</p>
 
 <script>
 $('#filter').on('keyup', function() {
     var keyword = $(this).val().toLowerCase();
-    $('.cars > li').each( function() {
-        $(this).toggle( keyword.length < 1 || $(this).attr('data-models').indexOf(keyword) > -1 );
+    $('.listing').each( function() {
+        $(this).toggle( keyword.length < 1 || $(this).attr('data-title').indexOf(keyword) > -1 );
     });
 });
 </script>
 
 <script>
-$("#test").click(function(){
-    $('div[data-term="830"]').toggle();
+// $(".button-bt").click(function(){
+//    var value=$(this).data("businesstype");
+//    $('div[data-term*="'+value+'"]').toggle("fade");
+// });
+</script>
+
+<script>
+$(".button-bt").click(function() {
+		var value=$(this).getAttribute('data-businesstype');
+    if($(this).is(":checked")) {
+			$('div[data-term*="'+value+'"]').show();
+      
+    } else {
+			$('div[data-term*="'+value+'"]').hide();
+
+    }
 });
 </script>
+
 <?
 
 
@@ -118,11 +126,16 @@ foreach($myposts as $post) :
 
 
 	$values = get_the_terms(get_the_ID(), 'business-type');
-	echo("<div class='listing' ");
+	$vals = array();
+	$vals2 = array();
+	echo("<div class='listing' data-term=':");
 	foreach($values as $val) :
-		echo("data-term='" . $val->term_id . "' ");
+		$vals[] = $val->term_id;
+		$vals2[] = $val->slug;
 	endforeach;
-	echo(">\n");
+	
+	echo(implode("::", $vals));
+	echo(":' data-title='". $post->post_name . " " . implode(' ', $vals2) . "'>\n");
 
 
 	global $post;
