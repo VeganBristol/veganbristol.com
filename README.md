@@ -1,23 +1,19 @@
-# veganbristol
+# veganbristol.com
 
 ## Sections
 
-- news (or articles?)
+Each post either be:
 
-- links / information
-
-## Strategy
-
-Each post can be
-
-- article
+- an article/news
 	- author
 	- author picture
 	- author email
-- business
+	- content
+- a listing
 	- opening hours
 	- address
 	- geo location
 	- price range
 	- type
+	- tags
 
