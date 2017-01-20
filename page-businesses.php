@@ -200,42 +200,33 @@ endforeach;
         news
       </div>
 
-      <div class="overmap_item" onclick="">
+      <div class="overmap_item" onclick="openNav()">
         food &amp; drink
       </div>
 
-
-      <nav class="overmap_item">
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&#9776;</a>
-
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&#x1f4cc;</a>
-
-      </nav>
+      <div class="overmap_item">
+        articles
+      </div>
 
     </div>
 
     <script>
-      navOpen = false;
       /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-      function toggleNav() {
-        if (navOpen){
-            closeInfo();
-            document.getElementById("mySidenav").style.width = "100%";
-            document.getElementById("map").style.marginLeft = "100%";
-            navOpen = false;
-          } else {
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("map").style.marginLeft = "0";
-            navOpen = true;
-          }
+      function openNav() {
+          closeInfo();
+          document.getElementById("mySidenav").style.width = "400px";
+          document.getElementById("map").style.marginLeft = "400px";
       }
 
       /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
       function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+          document.getElementById("map").style.marginLeft = "0";
       }
     </script>
 
     <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <div id="links">
       </div>
     </div>
@@ -259,7 +250,6 @@ endforeach;
       <div id="sideinfobox">
       </div>
     </div>
-
 
 
     <!-- Use any element to open the sidenav -->
