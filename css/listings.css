@@ -4,32 +4,52 @@
 	width: 170px;
 	display: inline-block;
 	margin: 10px;
-	border: 4px green solid;
+	border: 1px grey solid;
+  border-radius: 40px;
+  padding: 10px;
+}
+
+h4 {
+  font-size: 16px;
 }
 
 .whatever{
     display: inline-block;
-    color: white;
-    padding: 3px;
+    /*color: white;*/
+    /*padding: 3px;*/
     font-family: monospace;
     font-weight: normal;
-    border-radius: 10px;
-    font-size: 12px;
-    border: white 2px solid;
-    margin: 0px;
+    /*border-radius: 10px;*/
+    font-size: 10px;
+    /*border: white 2px solid;*/
+    /*margin: 0px;*/
 }
 
-.whatever:hover{
-	border-color: red;
-}
 
 #taglists input[type=checkbox]{
     display: none;
 }
 
-#taglists input[type=checkbox]:checked + .whatever{
-    color: #aaaaaa;
+#taglists input[type=checkbox]:checked + .post_tag-items {
+  background-color: #7AB317;
+  color: white;
 }
+
+#taglists input[type=checkbox]:checked + .business-type-items {
+  background-color: #0B2E59;
+  color: white;
+}
+
+#taglists input[type=checkbox]:checked + .neighbourhood-items {
+  background-color: #0D6759;
+  color: white;
+}
+
+#taglists input[type=checkbox]:checked + .cuisine-items {
+  background-color: #2A044A;
+  color: white;
+}
+
 
 .rightalign {
 	text-align: right;
@@ -41,27 +61,10 @@
 .tagitem {
   text-decoration: none;
   padding: 5px;
-  margin: 5px;
-  color: white;
+  margin: 2px;
   border-radius: 7px;
+  color: black;
 }
-
-.post_tag-item {
-  background-color: #7AB317;
-}
-
-.business-type-item {
-  background-color: #0B2E59;
-}
-
-.neighbourhood-item {
-  background-color: #0D6759;
-}
-
-.cuisine-item {
-  background-color: #2A044A;
-}
-
 
 .tagitem:hover {
   text-decoration: none;
@@ -69,21 +72,24 @@
 }
 
 
-.post_tag-item:hover {
+.post_tag-items {
   color: #7AB317;
 }
 
-.business-type-item:hover {
+.business-type-items {
   color: #0B2E59;
 }
 
-.neighbourhood-item:hover {
+.neighbourhood-items {
   color: #0D6759;
 }
 
-.cuisine-item:hover {
+.cuisine-items {
   color: #2A044A;
 }
+
+
+
 
 
 .displaylinks {
@@ -140,3 +146,37 @@
   background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/twitter1.svg) center left no-repeat;
 }
 
+
+
+/*Search bar*/
+
+#search {
+
+}
+
+#search input[type="text"] {
+    background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/magnifying-glass.svg) no-repeat;
+    background-size: 14px 14px;
+    background-position: 8px 50%;
+    border: 1px solid #d1d1d1;
+    font: 12px monospace;
+    color: #666666;
+    width: 150px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    }
+
+#search input[type="text"]:focus {
+    width: 200px;
+    }
+
+*:focus {
+    outline: none;
+}
