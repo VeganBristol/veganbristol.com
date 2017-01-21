@@ -8,10 +8,8 @@
 }
 
 .whatever{
-    /*background-color: red;*/
     display: inline-block;
-    color: #292723;
-    /*background-color: #aaaaaa;*/
+    color: white;
     padding: 3px;
     font-family: monospace;
     font-weight: normal;
@@ -36,3 +34,109 @@
 .rightalign {
 	text-align: right;
 }
+
+
+/* http://www.colourlovers.com/palette/81885/Hymn_For_My_Soul */
+
+.tagitem {
+  text-decoration: none;
+  padding: 5px;
+  margin: 5px;
+  color: white;
+  border-radius: 7px;
+}
+
+.post_tag-item {
+  background-color: #7AB317;
+}
+
+.business-type-item {
+  background-color: #0B2E59;
+}
+
+.neighbourhood-item {
+  background-color: #0D6759;
+}
+
+.cuisine-item {
+  background-color: #2A044A;
+}
+
+
+.tagitem:hover {
+  text-decoration: none;
+  background-color: white;
+}
+
+
+.post_tag-item:hover {
+  color: #7AB317;
+}
+
+.business-type-item:hover {
+  color: #0B2E59;
+}
+
+.neighbourhood-item:hover {
+  color: #0D6759;
+}
+
+.cuisine-item:hover {
+  color: #2A044A;
+}
+
+
+.displaylinks {
+  margin-bottom: 20px;
+}
+
+
+.weblink, .facebooklink, .locationlink, .instagramlink, .twitterlink {
+  margin-right: 20px;
+  margin-left: 5px;
+  background-size: 30px; 
+  height: 30px; 
+  width: 30px; 
+  float: left;
+}
+
+.weblink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/www.svg) center left no-repeat;
+}
+
+.weblink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/www1.svg) center left no-repeat;
+}
+
+.facebooklink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/facebook.svg) center left no-repeat;
+}
+
+.facebooklink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/facebook1.svg) center left no-repeat;
+}
+
+.locationlink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/location.svg) center left no-repeat;
+}
+
+.locationlink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/location1.svg) center left no-repeat;
+}
+
+.instagramlink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/instagram.svg) center left no-repeat;
+}
+
+.instagramlink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/instagram1.svg) center left no-repeat;
+}
+
+.twitterlink {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/twitter.svg) center left no-repeat;
+}
+
+.twitterlink:hover {
+  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/twitter1.svg) center left no-repeat;
+}
+

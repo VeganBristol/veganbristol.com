@@ -1,16 +1,38 @@
 <? get_header();
 
+function post_type_tags( $post_type = '' ) {
+    global $wpdb;
+
+    if ( empty( $post_type ) ) {
+        $post_type = get_post_type();
+    }
+
+    return $wpdb->get_results( $wpdb->prepare( "
+        SELECT COUNT( DISTINCT tr.object_id ) 
+            AS count, tt.taxonomy, tt.description, tt.term_taxonomy_id, t.name, t.slug, t.term_id 
+        FROM {$wpdb->posts} p 
+        INNER JOIN {$wpdb->term_relationships} tr 
+            ON p.ID=tr.object_id 
+        INNER JOIN {$wpdb->term_taxonomy} tt 
+            ON tt.term_taxonomy_id=tr.term_taxonomy_id 
+        INNER JOIN {$wpdb->terms} t 
+            ON t.term_id=tt.term_taxonomy_id 
+        WHERE p.post_type=%s 
+            AND tt.taxonomy='post_tag' 
+        GROUP BY tt.term_taxonomy_id 
+        ORDER BY count DESC
+    ", $post_type ) );
+}
+
 function display_terms_together($taxonomy) {
 	$vals = array();
 
 	foreach($taxonomy as $tax) {
-
 		$values = get_the_terms(get_the_ID(), $tax);
 
-		foreach($values as $val) {
+		foreach( $values as $val ) {
 			$vals[] = "\n<a class='" . $tax . "-item tagitem' href='#'>" . $val->name . "</a> ";
 		}
-
 	}
 	echo (implode(" ", $vals));
 }
@@ -48,39 +70,55 @@ $term3 = get_terms(array(
 	'taxonomy' => 'cuisine',
 	'hide_empty' => false
 ));
-$term4 = get_terms(array(
-	'taxonomy' => 'post_tag',
-	'hide_empty' => true
-));
+
+$term4 = post_type_tags('business');
+
+// $term4 = get_terms(array(
+// 	'taxonomy' => 'post_tag',
+// 	'hide_empty' => true
+// ));
 
 
 foreach($term1 as $term) :
 
-	echo("<input checked type='checkbox' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
+	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
 	echo("<label class='whatever business-type-item' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
 
 endforeach;
 
 foreach($term2 as $term) :
 
-	echo("<input checked type='checkbox' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
+	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
 	echo("<label class='whatever neighbourhood-item' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
 
 endforeach;
 
 foreach($term3 as $term) :
 
-	echo("<input checked type='checkbox' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
+	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
 	echo("<label class='whatever cuisine-item' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
 
 endforeach;
 
+foreach($term4 as $term) :
+
+	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
+	echo("<label class='whatever post_tag-item' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
+
+endforeach;
 
 ?>
 
 </div></div></div>
 
 <script>
+
+var IDs = [];
+$("#taglists").find("input").each(function(){ IDs.push(this.id); });
+var $allboxes = $('input[name=tag]');
+var nboxes = $allboxes.length;
+var $boxes = $allboxes;
+
 $('#filter').on('keyup', function() {
     var keyword = $(this).val().toLowerCase();
     $('.listing').each( function() {
@@ -88,14 +126,32 @@ $('#filter').on('keyup', function() {
     });
 });
 
+
 $(".button-bt").click(function() {
-		var value=this.getAttribute('data-termid');
-    if($(this).is(":checked")) {
-		$('div[data-term*="'+value+'"]').show('fade');
-    } else {
-    	$('div[data-term*="'+value+'"]').hide('fade');
-    }
+	$(".listing").hide()
+ 	$boxes = $('input[name=tag]:checked');
+  if($boxes.length == 0) {
+  	$.each(IDs, function(index, value) {
+			$('#'+value).prop('checked', true);
+      $('div[data-term*="'+value+'"]').show();
+    })
+  } else if($allboxes.length == ($boxes.length+1) && $allboxes.length == nboxes) {
+  	$.each(IDs, function(index, value) {
+			$('#'+value).prop('checked', false);
+    })
+		$('#'+this.id).prop('checked', true);
+    $('div[data-term*="'+this.id+'"]').show();
+	} else {
+  	$.each(IDs, function(index, value) {
+      if($('#'+value).prop('checked'))
+      {
+          $('div[data-term*="'+value+'"]').show();
+      }
+    })
+  }
+  nboxes = $boxes.length;
 });
+
 </script>
 
 <?
@@ -129,8 +185,8 @@ foreach($myposts as $post) :
 		$vals2[] = $val->slug;
 	endforeach;
 	
-	echo("<div class='listing' data-term=':");
-	echo(implode("::", $vals));
+	echo("<div class='listing' data-term=':r");
+	echo(implode("::r", $vals));
 	echo(":' data-title='". $post->post_name . " " . implode(' ', $vals2) . "'>\n");
 
 
