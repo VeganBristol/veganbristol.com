@@ -14,8 +14,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 */
 
 @import url(//fonts.googleapis.com/css?family=Oxygen|Rufina);
-@import url('css/bootstrap.min.css');
-
+@import url('css/bootstrap-3.3.7-dist/css/bootstrap.min.css');
+@import url('css/listings.css');
+@import url('css/map.css');
 
 /* Additional non-critical styles */
 
@@ -49,7 +50,7 @@ body {
 
 #overmap {
   position: absolute;
-  top: 10px; 
+  top: 10px;
   right: 10px; 
   z-index: 99;
   padding: 30px;
@@ -62,22 +63,17 @@ body {
   display:inline-block;
   padding: 5px;
   color: #333;
-  font-size: 20px;
-  text-align: right;
+  font-size: 30px;
+  text-align: center;
+  width: 50px;
 }
 
+.overmap_item:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
 
-/* End of MAP */
-
-#map { 
-  width:100%;
-  height:100%;
-  margin-left:auto;
-  margin-right:auto;
-  padding:0;
-  position:absolute;
-  top: 0;
-  /*overflow-x: hidden;*/
+.overmap_item a {
+  text-decoration: none;
 }
 
 /* Start navigation drawer */
@@ -88,7 +84,7 @@ body {
     height: 100%; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    z-index: 100; /* Stay on top */
     top: 0;
     left: 0;
     /*font-size: 24px;*/
@@ -120,11 +116,11 @@ body {
     position: fixed; /* Stay in place */
     z-index: 1; /* Stay on top */
     top: 0;
-    left: 0;
+    left: 100;
     font-size: 24px;
     background-color: #111; /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
+    padding-top: 100px; /* Place content 60px from the top */
     transition: 0.2s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
@@ -151,12 +147,6 @@ body {
     margin-left: 50px;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#map {
-    transition: margin-left 0.2s;
-    padding: 20px;
-}
-
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
@@ -166,8 +156,9 @@ body {
 }
 
 #infowindow-content {
+  margin: 0 auto; 
   width: 600px;
-  height: 600px;
+  height: 100%;
 }
 
 /* End navigation drawer */
@@ -394,4 +385,36 @@ body {
 
 .form-submit {
   text-align: right;
+}
+
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
 }

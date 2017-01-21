@@ -1,0 +1,23 @@
+
+/* End of MAP */
+
+#map { 
+  position:absolute;	
+  padding:0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /*width:100%;*/
+  /*height:100%;*/
+  /*margin-left:auto;*/
+  /*margin-right:auto;*/
+  /*overflow-x: hidden;*/
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#map {
+    transition: margin-left 0.2s;
+    padding: 20px;
+}

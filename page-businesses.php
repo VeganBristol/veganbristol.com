@@ -15,10 +15,9 @@
           marker.setAnimation(google.maps.Animation.BOUNCE);
         }
 
-        function loadContent(marker, post_slug){
+        function loadContent(marker, post_slug, title){
+
           focusMarker(marker);          
-          infoWindow.setContent("Loading...");
-          infoWindow.open(map, marker);
           $.ajax({
             url: post_slug,
             success: function(data){
@@ -27,7 +26,6 @@
               openInfo();
               // infoWindow.setContent(content);
               // infoWindow.open(map, marker);
-              infoWindow.close();
               focusMarker(marker);
             }
           });
@@ -181,76 +179,114 @@ foreach($myposts as $post) :
 endforeach;
 ?>
 
-      document.getElementById("links").innerHTML = links;
+      document.getElementById("listings").innerHTML = links;
     }
-
 
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvfhHopNdtPTjvZx8LfrJLjCiQwrHzfH0&callback=initialize"
     async defer></script>
 
-    <div id="overmap">
+    <nav id="overmap">
 
-      <div class="overmap_item">
-        about
+      <div class="overmap_item" onclick="openMaps()">
+        <a href="javascript:void(0)" class="closebtn" title="Map">&#8982;</a>
       </div>
 
-      <div class="overmap_item">
-        news
+      <div class="overmap_item" onclick="openAbout()">
+        <a href="javascript:void(0)" class="closebtn" title="About">&#8505;</a> 
       </div>
 
-      <div class="overmap_item" onclick="openNav()">
-        food &amp; drink
+      <div class="overmap_item" onclick="openNews()">
+        <a href="javascript:void(0)" class="closebtn" title="News">&#x1f4f0;</a>
       </div>
 
-      <div class="overmap_item">
-        articles
+      <div class="overmap_item" onclick="openListings()">
+        <a href="javascript:void(0)" class="closebtn" title="Listings">&#9776;</a>
       </div>
 
+    </nav>
+
+
+    <div id="about" class="sidenav">
     </div>
 
-    <script>
-      /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-      function openNav() {
-          closeInfo();
-          document.getElementById("mySidenav").style.width = "400px";
-          document.getElementById("map").style.marginLeft = "400px";
-      }
-
-      /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-      function closeNav() {
-          document.getElementById("mySidenav").style.width = "0";
-          document.getElementById("map").style.marginLeft = "0";
-      }
-    </script>
-
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <div id="links">
+    <div id="news" class="sidenav">
+      <div style="width:600px; align-content: center;">
+        <a class="twitter-timeline tw-align-center" data-theme="light" data-link-color="#19CF86" href="https://twitter.com/veganbristol">Tweets by veganbristol</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>    
       </div>
     </div>
 
-    <script>
-      /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
-      function openInfo() {
-          document.getElementById("mySideinfo").style.width = "600px";
-          document.getElementById("map").style.marginLeft = "600px";
-      }
+    <div id="listings" class="sidenav">
+    </div>
 
-      /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-      function closeInfo() {
-          document.getElementById("mySideinfo").style.width = "0";
-          document.getElementById("map").style.marginLeft = "0";
-      }
-    </script>
-
-    <div id="mySideinfo" class="sideinfo">
+    <div id="info" class="sideinfo">
       <a href="javascript:void(0)" class="closebtn" onclick="closeInfo()">&times;</a>
       <div id="sideinfobox">
       </div>
     </div>
 
+
+    <script>
+      function closeAll() {
+          closeNews()
+          closeInfo()
+          closeListings()
+          closeAbout()
+      }
+
+      function openMaps(){
+          closeAll()
+      }
+
+      function openInfo() {
+          closeAll()
+          document.getElementById("info").style.width = "100%";
+      }
+
+      function closeInfo() {
+          document.getElementById("info").style.width = "0";        
+      }
+
+      function openNews() {
+          closeAll()
+          document.getElementById("news").style.width = "100%";
+      }
+
+      function closeNews() {
+          document.getElementById("news").style.width = "0";        
+      }
+
+
+      function openListings() {
+          document.getElementById("listings").style.width = "100%";
+      }
+
+      function closeListings() {
+          document.getElementById("listings").style.width = "0";        
+      }
+
+
+      function openAbout() {
+          closeAll()
+          document.getElementById("about").style.width = "100%";        
+      }
+
+      function closeAbout() {
+          document.getElementById("about").style.width = "0";        
+      }
+    </script>
+
+    <script>
+      $body = $("body");
+
+      $(document).on({
+          ajaxStart: function() { $body.addClass("loading");    },
+           ajaxStop: function() { $body.removeClass("loading"); }    
+      });
+    </script>
+
+    <div class="modal"><!-- Place at bottom of page --></div>    
 
     <!-- Use any element to open the sidenav -->
     

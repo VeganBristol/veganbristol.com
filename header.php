@@ -16,7 +16,6 @@
         <!-- <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/bootstrap.min.css" rel="stylesheet"> -->
 
         <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">
-        <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/listings.css" rel="stylesheet">
     </head>
 <body>
 
