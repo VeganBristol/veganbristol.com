@@ -16,7 +16,9 @@ Use it to make something cool, have fun, and share what you've learned with othe
 @import url(//fonts.googleapis.com/css?family=Oxygen|Rufina);
 @import url('css/bootstrap-3.3.7-dist/css/bootstrap.min.css');
 @import url('css/listings.css');
+@import url('css/navigation.css');
 @import url('css/map.css');
+@import url('css/ajax-loader.css')
 
 /* Additional non-critical styles */
 
@@ -46,34 +48,6 @@ body {
   /*overflow-x: hidden;*/
   margin: 0px;
   padding: 0px;
-}
-
-#overmap {
-  position: absolute;
-  top: 10px;
-  right: 10px; 
-  z-index: 99;
-  padding: 30px;
-  /*width: 25%;*/
-}
-
-.overmap_item {
-  background-color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 10px;
-  display:inline-block;
-  padding: 5px;
-  color: #333;
-  font-size: 30px;
-  text-align: center;
-  width: 50px;
-}
-
-.overmap_item:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-.overmap_item a {
-  text-decoration: none;
 }
 
 /* Start navigation drawer */
@@ -162,112 +136,6 @@ body {
 }
 
 /* End navigation drawer */
-
-/* http://www.colourlovers.com/palette/81885/Hymn_For_My_Soul */
-
-
-.tagitem {
-  text-decoration: none;
-  padding: 5px;
-  margin: 5px;
-  color: white;
-  border-radius: 7px;
-}
-
-.post_tag-item {
-  background-color: #7AB317;
-}
-
-.business-type-item {
-  background-color: #0B2E59;
-}
-
-.neighbourhood-item {
-  background-color: #0D6759;
-}
-
-.cuisine-item {
-  background-color: #2A044A;
-}
-
-
-.tagitem:hover {
-  text-decoration: none;
-  background-color: white;
-}
-
-
-.post_tag-item:hover {
-  color: #7AB317;
-}
-
-.business-type-item:hover {
-  color: #0B2E59;
-}
-
-.neighbourhood-item:hover {
-  color: #0D6759;
-}
-
-.cuisine-item:hover {
-  color: #2A044A;
-}
-
-
-.displaylinks {
-  margin-bottom: 20px;
-}
-
-
-.weblink, .facebooklink, .locationlink, .instagramlink, .twitterlink {
-  margin-right: 20px;
-  margin-left: 5px;
-  background-size: 30px; 
-  height: 30px; 
-  width: 30px; 
-  float: left;
-}
-
-.weblink {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/www.svg) center left no-repeat;
-}
-
-.weblink:hover {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/www1.svg) center left no-repeat;
-}
-
-.facebooklink {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/facebook.svg) center left no-repeat;
-}
-
-.facebooklink:hover {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/facebook1.svg) center left no-repeat;
-}
-
-.locationlink {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/location.svg) center left no-repeat;
-}
-
-.locationlink:hover {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/location1.svg) center left no-repeat;
-}
-
-.instagramlink {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/instagram.svg) center left no-repeat;
-}
-
-.instagramlink:hover {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/instagram1.svg) center left no-repeat;
-}
-
-.twitterlink {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/twitter.svg) center left no-repeat;
-}
-
-.twitterlink:hover {
-  background: url(http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/icons/twitter1.svg) center left no-repeat;
-}
-
 
 /*Comments*/
 
@@ -387,34 +255,12 @@ body {
   text-align: right;
 }
 
-
-/* Start by setting display:none to make this hidden.
-   Then we position it in relation to the viewport window
-   with position:fixed. Width, height, top and left speak
-   for themselves. Background we set to 80% white with
-   our animation centered, and no-repeating */
-.modal {
-    display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
-                url('http://i.stack.imgur.com/FhHRx.gif') 
-                50% 50% 
-                no-repeat;
+.twitter {
+  margin-top: 60px;
+  margin-left: 600px;
 }
 
-/* When the body has the loading class, we turn
-   the scrollbar off with overflow:hidden */
-body.loading {
-    overflow: hidden;   
-}
+.blurb {
+  width: 200px;
 
-/* Anytime the body has the loading class, our
-   modal element will be visible */
-body.loading .modal {
-    display: block;
 }

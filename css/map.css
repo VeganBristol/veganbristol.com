@@ -19,5 +19,5 @@
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #map {
     transition: margin-left 0.2s;
-    padding: 20px;
+    /*padding: 20px;*/
 }

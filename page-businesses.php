@@ -212,8 +212,13 @@ endforeach;
     </div>
 
     <div id="news" class="sidenav">
-      <div style="width:600px; align-content: center;">
-        <a class="twitter-timeline tw-align-center" data-theme="light" data-link-color="#19CF86" href="https://twitter.com/veganbristol">Tweets by veganbristol</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>    
+      <div class="col-sm-3">
+        Vegan Bristol is a friendly guide to discover cafes, restaurants, takeaways, health food shops, eating out, Sunday roast, breakfast, pizza, etc. in Bristol and Bath areas. It is also a showcase of all the options available in this area for anyone considering heading towards veg*nism or generally reducing meat consumption. Please also visit Viva!, Viva! Health, Vegan Recipe Club and Vegan Lifestyle Association too.
+      </div>
+
+
+      <div class="col-sm-3">
+        <a class="twitter-timeline" data-width="400" data-theme="dark" data-link-color="#19CF86" href="https://twitter.com/veganbristol">Tweets by @veganbristol</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>    
       </div>
     </div>
 
