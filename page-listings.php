@@ -136,6 +136,7 @@ $("#resetbutton").click(function()
 		$('#'+value).prop('checked', true);
 		$('div[data-term*="'+value+'"]').show();
 	})
+	nboxes = $allboxes.length;
 })
 
 
