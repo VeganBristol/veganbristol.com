@@ -26,7 +26,6 @@
               openInfo();
               // infoWindow.setContent(content);
               // infoWindow.open(map, marker);
-              focusMarker(marker);
             }
           });
         }
@@ -34,6 +33,7 @@
         function initialize () {
           // Styles a map in night mode.
           map = new google.maps.Map(document.getElementById('map'), {
+
             center: {lat: 51.457, lng: -2.592},
             zoom: 14,
             styles: [
@@ -146,12 +146,7 @@ foreach($myposts as $post) :
   $post_slug=$post->post_name;
 
 
-	if (empty($lat) or empty($lng)) {
-?>
-	console.error( '<?=the_title()?> has no latlng set.' );
-<?	
-	// the_content();
-	} else {
+	if (!empty($lat) and !empty($lng)) {
 ?>
 		markers[<?=$counter?>] = new google.maps.Marker({
 		    position: { lat: <?=$lat?>, lng: <?=$lng?> },
@@ -197,10 +192,10 @@ endforeach;
         <a href="javascript:void(0)" class="closebtn" title="About">&#8505;</a> 
       </div>
 
-      <div class="overmap_item" onclick="openNews()">
+<!--       <div class="overmap_item" onclick="openNews()">
         <a href="javascript:void(0)" class="closebtn" title="News">&#x1f4f0;</a>
       </div>
-
+ -->
       <div class="overmap_item" onclick="openListings()">
         <a href="javascript:void(0)" class="closebtn" title="Listings">&#9776;</a>
       </div>
@@ -209,19 +204,36 @@ endforeach;
 
 
     <div id="about" class="sidenav">
-    </div>
-
-    <div id="news" class="sidenav">
+      <!-- About vegan bristol -->
       <div class="col-sm-3">
-        Vegan Bristol is a friendly guide to discover cafes, restaurants, takeaways, health food shops, eating out, Sunday roast, breakfast, pizza, etc. in Bristol and Bath areas. It is also a showcase of all the options available in this area for anyone considering heading towards veg*nism or generally reducing meat consumption. Please also visit Viva!, Viva! Health, Vegan Recipe Club and Vegan Lifestyle Association too.
+        Vegan Bristol is a friendly guide to discover cafes, restaurants, takeaways, health food shops, eating out, Sunday roast, breakfast, pizza, etc. in Bristol and Bath areas. It is also a showcase of all the options available in this area for anyone considering heading towards veg*nism or generally reducing meat consumption. Please also visit Viva!, Vegan Recipe Club and Vegan Lifestyle Association too.
       </div>
 
-
+      <!-- Twitter Feed -->
       <div class="col-sm-3">
         <a class="twitter-timeline" data-width="400" data-theme="dark" data-link-color="#19CF86" href="https://twitter.com/veganbristol">Tweets by @veganbristol</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>    
       </div>
+
+    <div class="col-sm-6" id="instagram">
     </div>
 
+    <script>
+          $.ajax({
+            url: "http://explodecomputer.com/veganbristol2017/index.php/instagram/",
+            success: function(data){
+              var content = "<div id='container'>"+data+"</div>";
+              document.getElementById("instagram").innerHTML = content;
+              // infoWindow.setContent(content);
+              // infoWindow.open(map, marker);
+            }
+          });
+    </script>
+    </div>
+
+<!--     <div id="news" class="sidenav">
+
+    </div>
+ -->
     <div id="listings" class="sidenav">
     </div>
 
@@ -234,7 +246,7 @@ endforeach;
 
     <script>
       function closeAll() {
-          closeNews()
+          // closeNews()
           closeInfo()
           closeListings()
           closeAbout()
@@ -270,7 +282,6 @@ endforeach;
       function closeListings() {
           document.getElementById("listings").style.width = "0";        
       }
-
 
       function openAbout() {
           closeAll()
