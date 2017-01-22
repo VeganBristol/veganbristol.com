@@ -26,7 +26,6 @@
               openInfo();
               // infoWindow.setContent(content);
               // infoWindow.open(map, marker);
-              focusMarker(marker);
             }
           });
         }
@@ -34,7 +33,7 @@
         function initialize () {
           // Styles a map in night mode.
           map = new google.maps.Map(document.getElementById('map'), {
-            mapTypeId: 'terrain',
+
             center: {lat: 51.457, lng: -2.592},
             zoom: 14,
             styles: [
@@ -214,6 +213,21 @@ endforeach;
       <div class="col-sm-3">
         <a class="twitter-timeline" data-width="400" data-theme="dark" data-link-color="#19CF86" href="https://twitter.com/veganbristol">Tweets by @veganbristol</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>    
       </div>
+
+    <div class="col-sm-6" id="instagram">
+    </div>
+
+    <script>
+          $.ajax({
+            url: "http://explodecomputer.com/veganbristol2017/index.php/instagram/",
+            success: function(data){
+              var content = "<div id='container'>"+data+"</div>";
+              document.getElementById("instagram").innerHTML = content;
+              // infoWindow.setContent(content);
+              // infoWindow.open(map, marker);
+            }
+          });
+    </script>
     </div>
 
 <!--     <div id="news" class="sidenav">

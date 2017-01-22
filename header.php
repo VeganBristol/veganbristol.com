@@ -9,7 +9,7 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-		<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/bootstrap.min.js"></script>
+		<!-- <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/bootstrap.min.js"></script> -->
 
         <?php wp_head(); ?>
 
@@ -17,7 +17,6 @@
 
         <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">
         <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/ajax-loader.css" rel="stylesheet">
-
         <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/listings.css" rel="stylesheet">
         <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/map.css" rel="stylesheet">
         <link href="http://explodecomputer.com/veganbristol2017/wp-content/themes/veganbristol.com/css/navigation.css" rel="stylesheet">

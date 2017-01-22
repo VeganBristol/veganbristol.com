@@ -1,5 +1,48 @@
 <? get_header();
 
+
+
+function display_links() {
+
+	$website = get_field('website', get_the_ID());
+	$facebook = get_field('facebook', get_the_ID());
+	$instagram = get_field('instagram', get_the_ID());
+	$twitter = get_field('twitter', get_the_ID());
+
+	if($website != '') 
+	{
+		echo("\n");
+		echo("<a href='" . $website . "' target='_blank'><div class='weblink'> </div></a>");
+	}
+	if($facebook != '')
+	{
+		echo("\n");
+		echo("<a href='https://www.facebook.com/" . $facebook . "' target='_blank'><div class='facebooklink'> </div></a>");
+	}
+	if($instagram != '')
+	{
+		echo("\n");
+		echo("<a href='https://www.instagram.com/" . $instagram . "' target='_blank'><div class='instagramlink'> </div></a>");
+	}
+	if($twitter != '')
+	{
+		echo("\n");
+		echo("<a href='https://www.twitter.com/" . $twitter . "' target='_blank'><div class='twitterlink'> </div></a>");
+	}
+
+	$values = get_field('location');
+
+	$lng = $values['lng'];
+	$lat = $values['lat'];
+
+	$add = str_replace(' ', '+', $values['address']);
+
+	$link = "http://www.google.com/maps/place/" . $add . "/@" . $lat . "," . $lng;
+
+	$out = "\n<a href='" . $link . "' target='_blank'><div class='locationlink'> </div></a>";
+	echo $out;
+}
+
 function post_type_tags( $post_type = '' ) {
     global $wpdb;
 
@@ -40,79 +83,6 @@ function display_terms_together($taxonomy) {
 
 
 ?>
-
-
-<div class="container">
-
-<div id='taglists'>
-<div class="row">
-<div class="col-sm-2"></div>
-<div class="col-sm-2">
-<p>
-<form id="search">
-<input type="text" id="filter">
-</form>
-<button id="resetbutton">Reset</button>
-</p>
-</div>
-<div class="col-sm-8 rightalign">
-<!-- Get list of tags -->
-
-<?
-
-
-$term1 = get_terms(array(
-	'taxonomy' => 'business-type',
-	'hide_empty' => false
-));
-$term2 = get_terms(array(
-	'taxonomy' => 'neighbourhood',
-	'hide_empty' => false
-));
-$term3 = get_terms(array(
-	'taxonomy' => 'cuisine',
-	'hide_empty' => false
-));
-
-$term4 = post_type_tags('business');
-
-// $term4 = get_terms(array(
-// 	'taxonomy' => 'post_tag',
-// 	'hide_empty' => true
-// ));
-
-
-foreach($term1 as $term) :
-
-	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
-	echo("<label class='whatever tagitem business-type-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
-
-endforeach;
-
-foreach($term2 as $term) :
-
-	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
-	echo("<label class='whatever tagitem neighbourhood-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
-
-endforeach;
-
-foreach($term3 as $term) :
-
-	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
-	echo("<label class='whatever tagitem cuisine-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
-
-endforeach;
-
-foreach($term4 as $term) :
-
-	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
-	echo("<label class='whatever tagitem post_tag-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
-
-endforeach;
-
-?>
-
-</div></div></div>
 
 <script>
 
@@ -170,6 +140,64 @@ $(".button-bt").click(function() {
 
 </script>
 
+
+<div class="container">
+
+<div id='taglists'>
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-2">
+<p>
+<form id="search">
+<input type="text" id="filter">
+</form>
+<button id="resetbutton">Show me everything</button>
+</p>
+</div>
+<div class="col-sm-8 rightalign">
+<!-- Get list of tags -->
+
+<?
+
+
+$term1 = get_terms(array('taxonomy' => 'business-type','hide_empty' => false));
+$term2 = get_terms(array('taxonomy' => 'neighbourhood','hide_empty' => false));
+$term3 = get_terms(array('taxonomy' => 'cuisine','hide_empty' => false));
+$term4 = post_type_tags('business');
+
+
+echo("<div class='row'>\n");
+foreach($term1 as $term) :
+	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
+	echo("<label class='whatever tagitem business-type-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
+endforeach;
+echo("</div>\n");
+
+echo("<div class='row'>\n");
+foreach($term2 as $term) :
+	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
+	echo("<label class='whatever tagitem neighbourhood-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
+endforeach;
+echo("</div>\n");
+
+echo("<div class='row'>\n");
+foreach($term3 as $term) :
+	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
+	echo("<label class='whatever tagitem cuisine-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
+endforeach;
+echo("</div>\n");
+
+echo("<div class='row'>\n");
+foreach($term4 as $term) :
+	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
+	echo("<label class='whatever tagitem post_tag-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
+endforeach;
+echo("</div>\n");
+
+?>
+
+</div></div></div>
+
 <?
 
 $values = get_the_terms(get_the_ID(), 'post_tag');
@@ -222,12 +250,15 @@ foreach($myposts as $post) :
 	$lng = $values['lng'];
 	$post_slug=$post->post_name;
 
+echo("\n<div class='displaylinks'>");
+display_links();
+echo("\n&nbsp;</div>\n");
 
-	echo("<h4>"); 
+	echo("<p></p><h4>"); 
 	the_title();
 	echo("</h4>");
 
-	display_terms_together(array('business-type', 'neighbourhood', 'cuisine', 'post_tag'));
+	// display_terms_together(array('business-type', 'neighbourhood', 'cuisine', 'post_tag'));
 
 	echo("</div></a>\n");
 
