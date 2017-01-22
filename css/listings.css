@@ -79,25 +79,26 @@ p {
 
 #taglists input[type=checkbox]:checked + .post_tag-items {
   background-color: #7AB317;
-
   color: white;
 }
 
 #taglists input[type=checkbox]:checked + .business-type-items {
   background-color: #0B2E59;
-
   color: white;
 }
 
 #taglists input[type=checkbox]:checked + .neighbourhood-items {
   background-color: #0D6759;
-
   color: white;
 }
 
 #taglists input[type=checkbox]:checked + .cuisine-items {
   background-color: #2A044A;
+  color: white;
+}
 
+#taglists input[type=checkbox]:checked + .vlevel {
+  background-color: #A0C55F;
   color: white;
 }
 
@@ -146,6 +147,9 @@ p {
 .cuisine-items:hover {
   border-color: #2A044A;
 }
+.vlevel:hover {
+  border-color: #A0C55F;
+}
 
 
 .post_tag-items {
@@ -164,6 +168,9 @@ p {
   color: #2A044A;
 }
 
+.vlevel {
+  color: #A0C55F;
+}
 
 
 

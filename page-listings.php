@@ -19,7 +19,7 @@ function display_links() {
 	$instagram = get_field('instagram', get_the_ID());
 	$twitter = get_field('twitter', get_the_ID());
 
-	if($website != '') 
+	if($website != '')
 	{
 		echo("\n");
 		echo("<a href='" . $website . "' target='_blank'><div class='weblink'> </div></a>");
@@ -95,9 +95,9 @@ function display_terms_together($taxonomy) {
 }
 
 
-$field = get_field_object('field_588354174cac8');
-// echo(implode(', ', $field['choices']));
-
+$veglevels = get_field_object('field_588515b86025f');
+// echo(implode(', ', $veglevels['choices']));
+// var_dump($veglevels);
 
 
 ?>
@@ -108,7 +108,7 @@ $field = get_field_object('field_588354174cac8');
 
 <div id='taglists'>
 <div class="row">
-<div class="col-sm-2"></div>
+<div class="col-sm-1"></div>
 <div class="col-sm-2">
 <p>
 <form id="search">
@@ -117,7 +117,7 @@ $field = get_field_object('field_588354174cac8');
 <button id="resetbutton">Show me everything</button>
 </p>
 </div>
-<div class="col-sm-8 rightalign">
+<div class="col-sm-9 rightalign">
 <!-- Get list of tags -->
 
 <?
@@ -129,33 +129,42 @@ $term3 = get_terms(array('taxonomy' => 'cuisine','hide_empty' => true));
 $term4 = post_type_tags('business');
 
 
-echo("<div class='row'>\n");
+echo("<div class='row'><div class='col-sm-11'>\n");
+$vc = (array) $veglevels['choices'];
+while ($term = current($vc)) {
+	echo("<input checked type='checkbox' name='tag' id='r" . key($vc) . "' class='button-bt' data-termid=':" . key($vc) . ":'>\n");
+	echo("<label class='whatever tagitem vlevel' for='r" . key($vc) . "'>" . $term . "</label>\n");
+	next($vc);
+}
+echo("</div><div class='col-sm-1 left-align'></div></div>\n");
+
+echo("<div class='row'><div class='col-sm-11'>\n");
 foreach((array) $term1 as $term) :
 	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
 	echo("<label class='whatever tagitem business-type-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
 endforeach;
-echo("</div>\n");
+echo("</div><div class='col-sm-1 left-align'><p>Business type</p></div></div>\n");
 
-echo("<div class='row'>\n");
+echo("<div class='row'><div class='col-sm-11'>\n");
 foreach((array) $term2 as $term) :
 	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
 	echo("<label class='whatever tagitem neighbourhood-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
 endforeach;
-echo("</div>\n");
+echo("</div><div class='col-sm-1 left-align'><p>Neighbourhood</p></div></div>\n");
 
-echo("<div class='row'>\n");
+echo("<div class='row'><div class='col-sm-11'>\n");
 foreach($term3 as $term) :
 	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
 	echo("<label class='whatever tagitem cuisine-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
 endforeach;
-echo("</div>\n");
+echo("</div><div class='col-sm-1 left-align'><p>Cuisine</p></div></div>\n");
 
-echo("<div class='row'>\n");
+echo("<div class='row'><div class='col-sm-11'>\n");
 foreach($term4 as $term) :
 	echo("<input checked type='checkbox' name='tag' id='r" . $term->term_id . "' class='button-bt' data-termid=':" . $term->term_id . ":'>\n");
 	echo("<label class='whatever tagitem post_tag-items' for='r" . $term->term_id . "'>" . $term->name . "</label>\n");
 endforeach;
-echo("</div>\n");
+echo("</div><div class='col-sm-1 left-align'><p>Tags</p></div></div>\n");
 
 ?>
 
@@ -198,7 +207,7 @@ foreach($myposts as $post) :
 		if (isset($val->slug)) $vals2[] = $val->slug;
 	endforeach;
 	
-	echo("<div class='listing' data-term=':r");
+	echo("<div class='listing' data-term=':r" . get_field('vlevel') . "::r");
 	echo(implode("::r", $vals));
 	echo(":' data-title='". $post->post_name . " " . implode(' ', $vals2) . "'>\n");
 
@@ -215,16 +224,20 @@ foreach($myposts as $post) :
 
 	echo("<div class='pdiv'>");
 	// $field = get_field_object('veglevel');
-	$value = get_field('veglevel');
 
+
+	$veglevel = get_field('vlevel');
+	if($veglevel)
+	{
+		echo("<p class='whatever tagitem vlevel'>" . $veglevels['choices'][ $veglevel ] . "</p>");
+
+	}
 
 	$location = get_field('location');
 	if($location)
 	{
 		echo("<p>" . $location['address'] . "</p>");		
 	}
-	echo("<p>" . the_field('veglevel') . "</p>");
-	// echo("<p>" . get_class($field) . "</p>");
 	echo("</div>");
 
 
