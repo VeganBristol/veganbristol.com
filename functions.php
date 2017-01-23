@@ -15,6 +15,7 @@ function my_edit_business_columns( $columns ) {
 		'title' => __( 'Title' ),
 		'tags' => __( 'Tags' ),
 		'business-type' => __( 'Business Type' ),
+		'vlevel' => __( 'Veg Level' ),
 		'cuisine' => __( 'Cuisine' ),
 		'comments' => __( '<span class="vers comment-grey-bubble" title="Comments"><span class="screen-reader-text">Comments</span></span>' ),
 		'date' => __( 'Date' )
@@ -24,6 +25,12 @@ function my_edit_business_columns( $columns ) {
 }
 
 add_action( 'manage_business_posts_custom_column', 'my_manage_business_columns', 10, 2 );
+
+
+// $fieldName = 'wpcf-vlevel';
+// $customField = substr($fieldName, 5);  
+// $fieldConfig = wpcf_admin_fields_get_field($customField);
+// echo $fieldConfig;
 
 function my_manage_business_columns( $column, $post_id ) {
 	global $post;
@@ -51,6 +58,25 @@ function my_manage_business_columns( $column, $post_id ) {
 
 				/* Join the terms, separating them with a comma. */
 				echo join( ', ', $out );
+			}
+
+			/* If no terms were found, output a default message. */
+			else {
+				_e( '—' );
+			}
+
+			break;
+
+
+		/* If displaying the 'business-type' column. */
+		case 'vlevel' :
+
+			/* Get the genres for the post. */
+			$term = get_field_object( 'vlevel', $post_id );
+			/* If terms were found. */
+			if ( !empty( $term['value'] ) ) {
+				$value = $term['value'];
+			  	echo $term['choices'][$value];  	
 			}
 
 			/* If no terms were found, output a default message. */
