@@ -9,6 +9,11 @@ body {
     text-align: center;
 }
 
+.displaycount {
+  font-family: monospace;
+  margin-top: 20px;
+}
+
 .internal {
   position: relative;
   height: 240px;
@@ -18,7 +23,6 @@ body {
 
 .listing {
   text-align: left;
-	float: right;
 	height: 240px;
 	width: 240px;
 	margin: 20px;
@@ -172,7 +176,9 @@ p {
   color: #A0C55F;
 }
 
-
+.glyphicon {
+  font-size: 30px;
+}
 
 
 .displaylinks {
@@ -186,6 +192,10 @@ p {
 
 a {
   color: black;
+}
+
+a:hover, a:selected {
+  text-decoration: none;
 }
 
 .weblink, .facebooklink, .locationlink, .instagramlink, .twitterlink {
@@ -242,7 +252,7 @@ a {
 /*Search bar*/
 
 #search {
-
+  margin-top: -10px;
 }
 
 #search input[type="text"] {
@@ -262,13 +272,17 @@ a {
     -moz-transition: all 0.7s ease 0s;
     -o-transition: all 0.7s ease 0s;
     transition: all 0.7s ease 0s;
+      margin-right: 20px;
+
     }
 
 *:focus {
     outline: none;
 }
 
-#resetbutton {
+
+
+.otherbutton {
   -webkit-border-radius: 28;
   -moz-border-radius: 28;
   border-radius: 28px;
@@ -279,11 +293,19 @@ a {
   padding: 5px 8px 5px 8px;
   text-decoration: none;
   border: none;
-  margin-top: 15px;
-  width: 150px;
+  margin-top: 0px;
+  width: 180px;
 }
 
-#resetbutton:hover {
+.otherbutton:hover {
   background: #D72D2F;
   text-decoration: none;
+}
+
+#showmoretags {
+  margin-top: 20px;
+}
+
+#extratags {
+  display: hidden;
 }

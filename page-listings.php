@@ -108,17 +108,18 @@ $veglevels = get_field_object('field_588515b86025f');
 
 <div id='taglists'>
 <div class="row">
-<div class="col-sm-1"></div>
-<div class="col-sm-2">
-<p>
-<form id="search">
-<input type="text" id="filter">
-</form>
-<button id="resetbutton">Show me everything</button>
-</p>
+<div class='col-sm-1'>
+	<a id="showmoretags" href="#">
+		<span class="glyphicon glyphicon-circle-arrow-down"></span>
+	</a>
+	<a id="resetbutton" href="#">
+		<span class="glyphicon glyphicon-refresh"></span>
+	</a>
 </div>
-<div class="col-sm-9 rightalign">
-<!-- Get list of tags -->
+<div class="col-sm-11">
+	<div id="extratags" class="row" style='border-bottom: 1px solid grey; padding-bottom: 20px; margin-bottom: 20px;'>
+		<div class="col-sm-12 rightalign">
+		<!-- Get list of tags -->
 
 <?
 
@@ -128,15 +129,6 @@ $term2 = get_terms(array('taxonomy' => 'neighbourhood','hide_empty' => true));
 $term3 = get_terms(array('taxonomy' => 'cuisine','hide_empty' => true));
 $term4 = post_type_tags('business');
 
-
-echo("<div class='row'><div class='col-sm-11'>\n");
-$vc = (array) $veglevels['choices'];
-while ($term = current($vc)) {
-	echo("<input checked type='checkbox' name='tag' id='r" . key($vc) . "' class='button-bt' data-termid=':" . key($vc) . ":'>\n");
-	echo("<label class='whatever tagitem vlevel' for='r" . key($vc) . "'>" . $term . "</label>\n");
-	next($vc);
-}
-echo("</div><div class='col-sm-1 left-align'></div></div>\n");
 
 echo("<div class='row'><div class='col-sm-11'>\n");
 foreach((array) $term1 as $term) :
@@ -168,9 +160,41 @@ echo("</div><div class='col-sm-1 left-align'><p>Tags</p></div></div>\n");
 
 ?>
 
-</div></div></div>
+		</div>
+	</div>
 
-<div class="parent">
+	<div class="row">
+		<div class="col-sm-6 rightalign">
+			<div class="row">
+
+				<?
+				$vc = (array) $veglevels['choices'];
+				while ($term = current($vc)) {
+					echo("<input checked type='checkbox' name='tag' id='r" . key($vc) . "' class='button-bt' data-termid=':" . key($vc) . ":'>\n");
+					echo("<label class='whatever tagitem vlevel' for='r" . key($vc) . "'>" . $term . "</label>\n");
+					next($vc);
+				}
+				?>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="row">
+				<form id="search">
+				<p>
+					<input type="text" id="filter"> <span class="displaycount"></span>
+				</p>
+				</form>
+			</div>
+			<div class="row">
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
+
+<div class="row">
 
 <?
 $myposts = get_posts(array(
@@ -207,7 +231,7 @@ foreach($myposts as $post) :
 		if (isset($val->slug)) $vals2[] = $val->slug;
 	endforeach;
 	
-	echo("<div class='listing' data-term=':r" . get_field('vlevel') . "::r");
+	echo("<div class='col-xs-6 col-sm-4 col-md-3 listing' data-term=':r" . get_field('vlevel') . "::r");
 	echo(implode("::r", $vals));
 	echo(":' data-title='". $post->post_name . " " . implode(' ', $vals2) . "'>\n");
 
@@ -248,12 +272,14 @@ echo("\n&nbsp;</div>\n");
 	
 	// display_terms_together(array('business-type', 'neighbourhood', 'cuisine', 'post_tag'));
 
-	echo("</div></a></div>\n");
+	echo("</div></a></div>\n\n");
 
 
 endforeach;
 
 ?>
+</div></div>
+</div> <!-- row -->
 
 </div> <!-- parent -->
 
@@ -269,11 +295,28 @@ $("#taglists").find("input").each(function(){ IDs.push(this.id); });
 var $allboxes = $('input[name=tag]');
 var nboxes = $allboxes.length;
 var $boxes = $allboxes;
+$("#extratags").hide();
+
+function printDisplayCount() {
+	var showing = $(".listing:visible").length;
+	var total = $(".listing").length;
+	// if(showing == total)
+	// {
+	// 	$('#resetbutton').hide();
+	// } else {
+	// 	$('#resetbutton').show();
+	// }
+	$('.displaycount').html("Showing "+showing+" of "+total+" listings");
+}
+
+printDisplayCount();
+
 
 $('#filter').on('keyup', function() {
     var keyword = $(this).val().toLowerCase();
     $('.listing').each( function() {
         $(this).toggle( keyword.length < 1 || $(this).attr('data-title').indexOf(keyword) > -1 );
+        printDisplayCount();
     });
 });
 
@@ -285,8 +328,17 @@ $("#resetbutton").click(function()
 		$('div[data-term*="'+value+'"]').show();
 	})
 	nboxes = $allboxes.length;
+	printDisplayCount();
 })
 
+$("#showmoretags").click(function()
+{
+if ( $( "#extratags" ).is( ":hidden" ) ) {
+    $( "#extratags" ).slideDown();
+  } else {
+    $( "#extratags" ).slideUp();
+  }
+})
 
 $(".button-bt").click(function() {
 	$(".listing").hide()
@@ -314,6 +366,7 @@ $(".button-bt").click(function() {
   	nboxes = $allboxes.length;
   else
 	  nboxes = $boxes.length;
+  printDisplayCount();
 });
 
 </script>
