@@ -1,0 +1,27 @@
+#overmap {
+  position: absolute;
+  top: 0px;
+  right: 0px; 
+  z-index: 99;
+  padding: 10px;
+  /*width: 25%;*/
+}
+
+.overmap_item {
+  background-color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 10px;
+  display:inline-block;
+  padding: 5px;
+  color: #333;
+  font-size: 30px;
+  text-align: center;
+  width: 50px;
+}
+
+.overmap_item:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.overmap_item a {
+  text-decoration: none;
+}

@@ -141,12 +141,11 @@ foreach($myposts as $post) :
 	global $post;
 	setup_postdata($post);
 	$values = get_field('location');
-	$lat = $values['lat'];
-	$lng = $values['lng'];
-  $post_slug=$post->post_name;
 
-
-	if (!empty($lat) and !empty($lng)) {
+	if (!empty($values)) {
+    $post_slug=$post->post_name;
+    $lat = $values['lat'];
+    $lng = $values['lng'];
 ?>
 		markers[<?=$counter?>] = new google.maps.Marker({
 		    position: { lat: <?=$lat?>, lng: <?=$lng?> },
@@ -167,7 +166,7 @@ foreach($myposts as $post) :
 
     links += '<a href="#" onclick="loadContent(markers[<?=$counter?>],\'<?=$post_slug?>\');">';
     links += '<?the_title()?>';
-    links += '</a>';    
+    links += '</a>';  
 <?
 		$counter++;
 	}
@@ -214,20 +213,8 @@ endforeach;
         <a class="twitter-timeline" data-width="400" data-theme="dark" data-link-color="#19CF86" href="https://twitter.com/veganbristol">Tweets by @veganbristol</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>    
       </div>
 
-    <div class="col-sm-6" id="instagram">
-    </div>
-
-    <script>
-          $.ajax({
-            url: "http://explodecomputer.com/veganbristol2017/index.php/instagram/",
-            success: function(data){
-              var content = "<div id='container'>"+data+"</div>";
-              document.getElementById("instagram").innerHTML = content;
-              // infoWindow.setContent(content);
-              // infoWindow.open(map, marker);
-            }
-          });
-    </script>
+      <div class="col-sm-6" id="instagram">
+      </div>
     </div>
 
 <!--     <div id="news" class="sidenav">
