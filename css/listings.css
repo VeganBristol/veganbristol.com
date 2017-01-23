@@ -71,7 +71,7 @@ p {
     font-family: monospace;
     font-weight: normal;
     /*border-radius: 10px;*/
-    font-size: 10px;
+    font-size: 15px;
     /*border: white 2px solid;*/
     /*margin: 0px;*/
 }
@@ -102,8 +102,27 @@ p {
 }
 
 #taglists input[type=checkbox]:checked + .vlevel {
-  background-color: #A0C55F;
   color: white;
+}
+
+#taglists input[type=checkbox]:checked + .v1 {
+  color: white;
+  background-color: #C0D860;
+}
+
+#taglists input[type=checkbox]:checked + .v2 {
+  color: white;
+  background-color: #789048;
+}
+
+#taglists input[type=checkbox]:checked + .v3 {
+  color: white;
+  background-color: #607848;
+}
+
+#taglists input[type=checkbox]:checked + .v4 {
+  color: white;
+  background-color: #3C3D36;
 }
 
 
@@ -194,7 +213,11 @@ a {
   color: black;
 }
 
-a:hover, a:selected {
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
   text-decoration: none;
 }
 
@@ -260,7 +283,7 @@ a:hover, a:selected {
     background-size: 14px 14px;
     background-position: 8px 50%;
     border: 1px solid #d1d1d1;
-    font: 12px monospace;
+    font: 15px monospace;
     color: #666666;
     width: 150px;
     padding: 6px 15px 6px 35px;

@@ -171,7 +171,7 @@ echo("</div><div class='col-sm-1 left-align'><p>Tags</p></div></div>\n");
 				$vc = (array) $veglevels['choices'];
 				while ($term = current($vc)) {
 					echo("<input checked type='checkbox' name='tag' id='r" . key($vc) . "' class='button-bt' data-termid=':" . key($vc) . ":'>\n");
-					echo("<label class='whatever tagitem vlevel' for='r" . key($vc) . "'>" . $term . "</label>\n");
+					echo("<label class='whatever tagitem vlevel " . key($vc) . "' for='r" . key($vc) . "'>" . $term . "</label>\n");
 					next($vc);
 				}
 				?>
